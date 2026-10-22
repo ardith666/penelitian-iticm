@@ -14,11 +14,18 @@ Step-by-step router for a journal-ready Indonesian article (AMP Gen.03, Tahap 0�
 - NOT for: skripsi/thesis chapters, non-academic copywriting, single-paragraph paraphrase
 
 ## Cara Kerja
+0. Siapkan/baca `<proyek>/knowledge/` dulu (lihat "Workspace knowledge/") — sesi lanjutan mulai dari ROADMAP + HISTORY, bukan dari nol.
 1. Mulai dari Tahap 0. Baca HANYA file tahap aktif di `stages/` — jangan preload sisanya.
 2. Tanyakan input yang dibutuhkan tahap itu (lihat "Tanya ke user" per file). Data kosong → tandai + tanya ulang, JANGAN asumsi.
 3. Jalankan prompt tahap itu: satu bagian = satu generate utuh, judul bab eksplisit di awal.
 4. Cek gate tahap itu bersama user sebelum lanjut. Urutan default berurutan; boleh lompat hanya bila gate tahap yang dilewati sudah terpenuhi.
 5. SLR → baca `references/prisma-slr.md` saat Tahap 6 dan 7.
+
+## Workspace knowledge/
+Setiap proyek artikel WAJIB punya folder `<proyek>/knowledge/` sebagai memori bersama:
+1. Saat proyek baru dimulai: buat `<proyek>/knowledge/` berisi `ROADMAP.md` (semua tahap sebagai checkbox `- [ ]`/`- [x]` + artefak tiap tahap) dan `HISTORY.md` (log berjalan per tanggal).
+2. Setiap selesai satu pekerjaan: centang checkbox di ROADMAP dan tambah 1 entri HISTORY (tanggal, ringkasan, file ditulis/diubah, keputusan user).
+3. Setiap sesi lanjutan: baca ROADMAP + HISTORY dulu sebelum bertanya — status sudah/belum terbaca dari checkbox.
 
 ## Index Tahap
 | # | File | Hasil |
@@ -44,4 +51,7 @@ Step-by-step router for a journal-ready Indonesian article (AMP Gen.03, Tahap 0�
 - Tense: Pendahuluan present, Metode/Hasil past, Pembahasan campuran; hedging (`suggests/may`) bukan `proves`.
 - Setiap DOI/nama/tahun diverifikasi; yang tak terkonfirmasi ditandai `[PERLU VERIFIKASI MANUAL]`.
 - LLM tidak boleh jadi co-author; cek AI-disclosure jurnal sebelum submit.
+- Humanizer & Turnitout pass: sebelum Tahap 13 (submit), jalankan skill humanizer mode file atas draf final untuk nada alami. Selanjutnya, gunakan [Turnitout-Humanizer](https://github.com/ardith666/Turnitout-Humanizer) (alat zero-AI deterministik) untuk membersihkan token watermark AI, zero-width tracking Unicode, metadata C2PA, dan memecah contiguous n-gram pemicu Turnitin/iThenticate pada berkas .docx/.tex.
+- Dependensi ekosistem: `Turnitout-Humanizer` (sanitasi Turnitin/AI), `naskah-id` (kaidah EYD V / KBBI), `dev-methodology` (state tracking), dan `officecli` (`tools/officecli.md` untuk build format .docx).
+- Dependensi .docx: officecli (instal + konvensi JUTISI di `tools/officecli.md`); dipakai Tahap 13 untuk membangun file .docx naskah.
 - Latar: Tahap 1–6 verbatim Notes ITICM/Penelitian "Aturan Promt"; Tahap 0, 7–13 lanjutan gaya sama. Pelajaran `jamditis/academic-writing`: `references/pelajaran-academic-writing.md`. Verifikasi sumber + IEEE (dari `endigo/academic-research-writer`): `references/verifikasi-sumber.md`, `references/format-ieee.md`.
